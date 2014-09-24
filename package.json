@@ -1,0 +1,24 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "CSS Diner",
+  "main": "restaurant.js",
+  "dependencies": {
+    "browser-sync": "^1.5.1",
+    "gulp": "^3.8.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jfreyre/restaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfreyre/restaurant/issues"
+  },
+  "homepage": "https://github.com/jfreyre/restaurant"
+}
