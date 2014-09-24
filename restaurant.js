@@ -323,6 +323,22 @@ function loadBoard(){
 
     var c = boardString.charAt(i);
 
+    if (c == "s") {
+      boardMarkup = boardMarkup + '<sushi class="small"/>\n'
+      markup = markup + '<div>&ltsushi class="small"/&gt</div>';
+    }
+    if (c == "S") {
+      boardMarkup = boardMarkup + '<sushi/>\n'
+      markup = markup + '<div>&ltsushi/&gt</div>';
+    }
+    if (c == "G") {
+      boardMarkup = boardMarkup + '<apple class="granny-smith"/>\n'
+      markup = markup + '<div>&ltapple class="granny-smith"/&gt</div>';
+    }
+    if (c == "g") {
+      boardMarkup = boardMarkup + '<apple class="small granny-smith"/>\n'
+      markup = markup + '<div>&ltapple class="small granny-smith"/&gt</div>';
+    }
     if(c == "C") {
       boardMarkup = boardMarkup + '<carrot/>\n'
       markup = markup + "<div>&ltcarrot/&gt</div>";
