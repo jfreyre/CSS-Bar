@@ -1,351 +1,597 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 
 // Hash the array and compare the arrays!
 // Key
 // a = small apple .small
 // A = apple
+// g = small granny-smith apple
+// G = granny-smith apple
 // o = small orange, .small
 // O = orange
 // p = small pickle, .small
 // P = pickle
+// s = small sushi, .small
+// S = sushi
 // () = plate open / close
 // {} = fancy plate open / close
 // [] = bento open close tags
 
 var levels = [
-  {
-    helpTitle : "Select elements by their type",
-    selectorName : "Type Selector",
-    doThis : "Select the plates",
+// {
+//     doThis: "Demo des éléments",
+//     board: "a A g G o O p P s S (){}[] (a)(ao)(aag)(agao){A}{AA}{AAA}{AAAA} [a][ao][aag][agao][A][AA][AAA][AGAO](s)(ss)(sss)(ssss)(S)(SS)(SSS)(SSSS)(OSOS)",
+//     selector: "apple",
+//     selectorName : "Sélecteur d'élément",
+//     helpTitle : "TODO: REMOVE",
+//     syntax : "E",
+//     examples : [],
+// },
+{
+    doThis : "Toutes les assiettes ?",
+    board: "s () a {} O [] P () G",
     selector : "plate",
-    syntax : "A",
-    help : "Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.",
+    selectorName : "Sélecteur d'élément",
+    helpTitle : "Sélectionne en fonction du type d'élément",
+    syntax : "E",
+    help : "Sélectionne tous les éléments <strong>E</strong>.",
     examples : [
-      '<strong>div</strong> selects all <tag>div</tag> elements.',
-      '<strong>p</strong> selects all <tag>p</tag> elements.',
-      ],
-    board: "()()"
-  },
-  {
-    doThis : "Select the bento boxes",
+    '<strong>div</strong> sélectionne toutes les <tag>div</tag> de la page.',
+    '<strong>p</strong> sélectionne tous les <tag>p</tag> de la page.',
+    ],
+
+},
+{
+    doThis : "Tous les bento ?",
+    board: "[]G()P[]",
     selector : "bento",
-    syntax : "A",
-    helpTitle : "Select elements by their type",
-    selectorName : "Type Selector",
-    help : "Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.",
+    selectorName : "Sélecteur d'élément",
+    helpTitle : "Sélectionne en fonction du type d'élément",
+    syntax : "E",
+    help : "Sélectionne tous les éléments <strong>E</strong>.",
     examples : [
-      '<strong>div</strong> will select all <tag>div</tag> elements.',
-      '<strong>p</strong> will select all <tag>p</tag> elements.',
-      ],
-    board: "[]()[]"
-  },
-  {
-    doThis : "Select the fancy plate",
+    '<strong>div</strong> sélectionne toutes les <tag>div</tag> de la page.',
+    '<strong>p</strong> sélectionne tous les <tag>p</tag> de la page.',
+    ],
+
+},
+{
+    doThis : "Toutes les pommes ?",
+    board: "g G [O] {A} A",
+    selector : "apple",
+
+    selectorName : "Sélecteur d'élément",
+    helpTitle : "Sélectionner en fonction du type d'élément",
+
+    syntax : "E",
+    help : "Sélectionne tous les éléments <strong>E</strong>.",
+    examples : [
+    '<strong>div</strong> sélectionne toutes les <tag>div</tag> de la page.',
+    '<strong>p</strong> sélectionne tous les <tag>p</tag> de la page.',
+    ],
+
+},
+
+
+{
+    doThis : "L'assiette fantaisiste ?",
+    board: "{}()[]",
     selector : "#fancy",
-    selectorName: "ID Selector",
-    helpTitle: "Select elements with an ID",
-    syntax: "#id",
-    help : 'Selects the element with the <strong>id</strong> attribute. You can also combine the ID selector with the type selector.',
+
+    selectorName : "Sélecteur d'identifiant",
+    helpTitle : "Sélectionne en fonction de l'identifiant de l'élément",
+
+
+    syntax : "#ID",
+    help : "Sélectionne l'élément dont l'identifiant est <strong>ID</strong>. Par exemple: <tag>div id='header'</tag>, <tag>ul id='main-navigation'</tag> ou encore <tag>p id='help'</tag>. <br/><br/><strong>Attention</strong>, il ne peut pas y avoir plusieurs éléments avec le même identifiant sur une même page",
     examples : [
-      '<strong>#cool</strong> will select any element with <strong>id="cool"</strong>',
-      '<strong>ul#long</strong> will select <strong>&lt;ul id="long"&gt;</strong>'
+    '<strong>#main-navigation</strong> sélectionne l\'élément dont l\'attribut <strong>id</strong> vaut <tag>main-navigation</tag>.',
+    '<strong>div#modal</strong> sélectionne la div dont l\'identifiant est égal à <strong>modal</strong>.',
     ],
-    board: "{}()[]"
-  },
-  {
-    helpTitle: "Select an element inside another element",
-    selectorName : "Descendant Selector",
-    doThis : "Select the apple on the plate",
+
+},
+
+{
+    doThis : "La pomme qui est sur une assiette ?",
+    board: "A[a](A)a",
     selector : "plate apple",
-    syntax: "A&nbsp;&nbsp;B",
 
-    help : "Selects all <strong>B</strong> inside of <strong>A</strong>. Here <strong>B</strong> is the descendant element, meaning an element that is inside of another element.",
+    selectorName : "Sélecteur descendant",
+    helpTitle : "Sélectionne un élément à l'intérieur d'un autre",
+
+
+    syntax : "F&nbsp;&nbsp;E",
+    help : "Sélectionne tous les éléments <strong>E</strong> qui sont à l'intérieur de <strong>F</strong>. ",
     examples : [
-      '<strong>p&nbsp;&nbsp;strong</strong> will select all <strong>&lt;strong&gt;</strong> that are descendants of any <strong>&lt;p&gt;</strong>',
-      '<strong>#fancy&nbsp;&nbsp;span</strong> will select any <strong>&lt;span&gt;</strong> that is a descendant of any element with  <strong>id="fancy"</strong>',
+    '<strong>p&nbsp;&nbsp;strong</strong> va sélectionner tous les <strong>&lt;strong&gt;</strong> enfants d\'un <strong>&lt;p&gt;</strong>',
+    '<strong>#fancy&nbsp;&nbsp;span</strong>va sélectionner tous les <strong>&lt;span&gt;</strong> qui sont enfant d\'un  <strong>id="fancy"</strong>',
     ],
-    board: "[](A)A"
-  },
-  {
-    doThis : "Select the pickle on the fancy plate",
-    selector : "#fancy pickle",
-    helpTitle: "Combine the Descendant & ID Selectors",
-    syntax: "#id&nbsp;&nbsp;A",
-    help : 'You can combine any selector with the descendent selector.',
+
+},
+
+{
+    doThis : "Tous les sushis sur une assiette fantaisiste ?",
+    board: "{S}(S){s}(s)",
+    selector : "#fancy sushi",
+
+    selectorName : "Sélecteur descendant",
+    helpTitle : "Sélectionne un élément à l'intérieur d'un autre",
+
+    syntax : "F&nbsp;&nbsp;E",
+    help : "Sélectionne tous les éléments <strong>E</strong> qui sont à l'intérieur de <strong>F</strong>. ",
     examples : [
-      '<strong>#cool&nbsp;span</strong> will select all <strong>&lt;span&gt;</strong> elements that are inside of elements with <strong>id="cool"</strong>'
+    '<strong>p&nbsp;&nbsp;strong</strong> va sélectionner tous les <strong>&lt;strong&gt;</strong> enfants d\'un <strong>&lt;p&gt;</strong>',
+    '<strong>#fancy&nbsp;&nbsp;span</strong>va sélectionner tous les <strong>&lt;span&gt;</strong> qui sont enfant d\'un  <strong>id="fancy"</strong>',
     ],
-    board: "[O]{P}(P)"
-  },
-  {
-    doThis : "Select the small apples",
+
+},
+
+
+
+{
+    doThis : "Tous les petits objets",
+    board: "aAoOpPsSgG",
     selector : ".small",
-    selectorName: "Class Selector",
-    helpTitle: "Select elements by their class",
 
-    syntax: ".classname",
-    help : 'The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.',
-    examples : [
-    '<strong>.neato</strong> selects all elements with <strong>class="neato"</strong>'
-    ],
+    selectorName : "Sélecteur de classe",
+    helpTitle : "Sélectionne un élément en fonction de sa classe",
 
-    board: "Aa(a)()"
-  },
-  {
-    doThis : "Select the small oranges",
+    syntax : ".S",
+    help : "Il est possible de mélanger tous les sélecteurs! :)",
+examples : [
+'<strong>.neato</strong> va sélectionner tous les éléments ayant une classe égale à <strong>neato</strong>'
+],
+
+},
+
+{
+    doThis : "Les petites oranges",
+    board: "P[p]O[o]A[a]",
     selector : "orange.small",
-    helpTitle: "Combine the Class Selector",
-    syntax: "A.className",
-    help : 'You can combine the class selector with other selectors, like the type selector.',
-    examples : [
-      '<strong>ul.important</strong> will select all <strong>&lt;ul&gt;</strong> elements that have <strong>class="important"</strong>',
-      '<strong>#big.wide</strong> will select all elements with <strong>id="big"</strong> that also have <strong>class="wide"</strong>'
-    ],
-    board: "Aa[o](O)(o)"
-  },
-  {
-    doThis : "Select the small oranges in the bentos",
-    selector : "bento orange.small",
-    syntax: "Put your back into it!",
-    helpTitle: "You can do it...",
-    help : 'Combine what you learned in the last few levels to solve this one!',
-    board: "A(o)[o][a][o]"
-  },
-  {
-    doThis : "Select all the plates and bentos",
 
-    selector : "plate,bento",
-    selectorName : "Comma Combinator",
-    helpTitle: "Combine, selectors, with... commas!",
-    syntax : "A, B",
-    help : 'Thanks to Shatner technology, this will select all <strong>A</strong> and <strong>B</strong> elements. You can combine any selectors this way, and you can specify more than two.',
-    examples: [
-    '<strong>p, .fun</strong> will select all <tag>p</tag> elements as well as all elements with <strong>class="fun"</strong>',
-    '<strong>a, p, div</strong> will select all <tag>a</tag>, <tag>p</tag> and <tag>div</tag> elements'
-    ],
-    board: "pP(P)[P](P)Pp"
-  },
-  {
-    doThis : "Select all the things!",
+    selectorName : "Combiner sélecteur de classe et d'élément",
+    helpTitle : "Sélectionne un élément en fonction de sa classe",
+
+    syntax : "E.S",
+    help : "Il est possible de mélanger tous les sélecteurs! :)",
+examples : [
+'<strong>p.neato</strong> va sélectionner tous les <strong>paragraphes</strong> ayant une classe égale à <strong>neato</strong>'
+],
+
+},
+
+{
+    doThis : "Toute les petites pommes granny-smith ?",
+    board: "aAoOpPsSgG",
+    selector : "apple.small.granny-smith",
+
+    selectorName : "Combiner des sélecteurs de classe",
+    helpTitle : "Sélectionne un élément en fonction de ses classes",
+
+    syntax : ".S.T",
+    help : "Etant donné qu'un élément peut posséder plusieurs classes, il est possible de sélectionner des éléments en fonction de plusieurs de ses classes.",
+examples : [
+'<strong>div.message.alert</strong> va sélectionner toutes les <tag>div</tag> qui ont les classes <strong>message</strong> et <strong>alert</strong>.'
+],
+
+},
+
+{
+    doThis : "Les petits cornichons à l'intérieur d'un bento",
+    board: "P[p]O[o]A[a]",
+    selector : "bento pickle.small",
+
+    selectorName : "Sélecteur de classe avec héritage",
+    helpTitle : "Sélectionne un élément en fonction de sa classe",
+
+
+    syntax : "F E.S",
+    help : "Il est possible de mélanger tous les sélecteurs! :)",
+examples : [
+'<strong>div p.neato</strong> va sélectionner tous les <strong>paragraphes</strong> ayant une classe égale à <strong>neato</strong> enfant d\'un élément <strong>div</strong>'
+],
+
+},
+
+
+{
+    doThis : "Toutes les assiettes, tous les bento et tous les petits objets ?",
+    board: "{}S[]()G[]ga",
+    selector : "plate, bento, .small",
+
+    selectorName : "Combinateur",
+    helpTitle : "Permet de combiner plusieurs sélecteurs simplement avec une ,",
+
+
+    syntax : "S1, S2, ..., SN",
+    help : "En plus, il est possible de mélanger tous les sélecteurs! :)",
+examples : [
+'<strong>p, .fun</strong> va sélectionner tous les <tag>p</tag> et tous éléments avec une classe égale à <strong>class="fun"</strong>',
+    '<strong>a, p, div</strong> va sélectionner tous les <tag>a</tag>, <tag>p</tag> et <tag>div</tag> '
+],
+
+},
+{
+    doThis : "Tous les éléments ?",
+    board: "{P}p(O)o(A)[a]S",
     selector : "*",
-    selectorName:  "The Universal Selector",
-    helpTitle: "You can select everything!",
+
+    selectorName : "Sélecteur universel",
+    helpTitle : "Permet de sélectionner tous les éléments",
+
+
     syntax : "*",
-    help : 'You can select all elements with the universal selector! ',
-    examples : [
-      '<strong>p *</strong> will select every element inside all <strong>&lt;p&gt;</strong> elements.'
-    ],
-    board: "A(o)[][O]{)"
-  },
-  {
-    doThis : "Select everything on a plate",
+    help : "Est généralement utilisé pour appliquer des règles génériques à tous les éléments",
+    examples : [],
+
+},
+{
+    doThis : "Tous les éléments sur une assiette ?",
+    board: "{P}[p](S)o(G)[a]",
     selector : "plate *",
-    syntax : "A&nbsp;&nbsp;*",
-    helpTitle: "Combine the Universal Selector",
-    help : 'This will select all elements inside of <strong>A</strong>.',
-    examples : [
-      '<strong>p *</strong> will select every element inside all <strong>&lt;p&gt;</strong> elements.',
-      '<strong>ul.fancy *</strong> will select every element inside all <strong>&lt;ul class="fancy"&gt;</strong> elements.'
-    ],
-    board: "{o}(P)a(A)"
-  },
-  {
-    doThis : "Select every apple that's next to a plate",
+
+    selectorName : "Combinaison avec le sélecteur universel",
+    helpTitle : "Permet de sélectionner tous les éléments enfant de ",
+
+    syntax : "S *",
+    help : "TODO",
+    examples : [],
+
+},
+
+{
+    doThis : "Toutes les pommes juste après une assiette ?",
+    board: "[a]()a()Ga()Ag",
     selector : "plate + apple",
-    helpTitle: "Select an element that directly follows another element",
-    selectorName: "Adjacent Sibling Selector",
-    syntax : "A + B",
-    help : "This selects all <strong>B</strong> elements that directly follow <strong>A</strong>. Elements that follow one another are called siblings. They're on the same level, or depth. <br/><br/>In the HTML markup for this level, elements that have the same indentation are siblings.",
+
+    selectorName : "Sélecteur de frère et soeur adjacent",
+    helpTitle : "Permet de sélectionner un élément qui se trouve <strong>directement</strong> après un autre",
+
+    syntax : "S + S",
+    help : "TODO",
     examples : [
-      '<strong>p + .intro</strong> will select every element with <strong>class="intro"</strong> that directly follows a <tag>p</tag>',
-      '<strong>div + a</strong> will select every <tag>a</tag> element that directly follows a <tag>div</tag>'
+    '<strong>p + .intro</strong> va sélectionner tous les éléments avec <strong>class="intro"</strong> qui suivent directement un <tag>p</tag>',
+    '<strong>div + a</strong> va sélectionner tous les éléments <tag>a</tag> qui suivent directement un élément <tag>div</tag>'
     ],
-    board: "[a]()a()Aaa"
-  },
-  {
-    selectorName: "General Sibling Selector",
-    helpTitle: "Select elements that follows another element",
-    syntax: "A ~ B",
-    doThis : "Select every pickle to the right of the bento",
+
+},
+
+{
+    doThis : "Tous les cornichons après un bento ?",
+    board: "P[o]pP(P)P(s)P",
     selector : "bento ~ pickle",
-    help : "You can select all siblings of an element that follow it. This is like the Adjacent Selector (A + B) except it gets all of the following elements instead of one.",
+
+    selectorName : 'Sélecteur de "fraternité"',
+    helpTitle : "Permet de sélectionner un élément qui se trouve après un autre mais au mais niveau",
+
+
+    syntax : "A ~ B",
+    help : "Vous pouvez sélectionner tous les frères et soeurs d'un élément qui le suivent. C'est comme le sélecteur adjacent (A + B) sauf qu'il obtient tous les éléments au lieu du frère/soeur direct.",
     examples : [
-      '<strong>A ~ B</strong> will select all <strong>B</strong> that follow a <strong>A</strong>'
+    '<strong>A ~ B</strong> va sélectionner tous les <strong>B</strong> qui suivent <strong>A</strong>'
     ],
-    board: "P[o]pP(P)(p)"
-  },
-  {
-    selectorName: "Child Selector",
-    syntax: "A > B&nbsp;",
-    doThis : "Select the apple directly on a plate",
+
+},
+
+{
+    doThis : "Toutes les pommes directement sur une assiette ?",
+    board: "([aA])(G)(a)Aa",
     selector : "plate > apple",
-    helpTitle: "Select direct children of an element",
-    help : "You can select elements that are direct children of other elements. A child element is any element that is nested direclty in another element. <br><br>Elements that are nested deeper than that are called descendant elements.",
+
+    selectorName : "Sélecteur d'enfants directs",
+    helpTitle : "Sélectionne les enfants <strong>B</strong> directs de <strong>A</strong>",
+
+
+    syntax : "A > B",
+    help : "Vous pouvez sélectionner les éléments qui sont les descendants directs d'autres éléments. Un élément enfant est un élément qui est imbriqué directement dans un autre élément. <br/><br/>Les éléments qui sont imbriquées plus profond sont appelés éléments descendants.",
     examples : [
-      '<strong>A > B</strong> will select all <strong>B</strong> that are a direct children <strong>A</strong>'
+    '<strong>A > B</strong> va sélectionner tous les <strong>B</strong> directement enfant de <strong>A</strong>'
     ],
-    board: "([A])(A)()Aa"
-  },
-  {
-    selectorName: "First Child Pseudo-selector",
-    helpTitle: "Select a first child element inside of another element",
-    doThis : "Select the top orange",
+
+},
+
+
+{
+    doThis : "Les premiers éléments de chaque assiette ?",
+    board: "{SS}(PP)(OOO)p",
     selector : "plate :first-child",
-    syntax: ":first-child",
 
-    help : "You can select the first child element. A child element is any element that is directly nested in another element. You can combine this pseudo-selector with other selectors.",
+    selectorName : "Pseudo-sélecteur du premier enfant",
+    helpTitle : "Sélectionne le premier enfant d'un élément",
+
+
+    syntax : ":first-child",
+    help : "VVous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner cette pseudo-sélecteur avec d'autres sélecteurs.",
     examples : [
-      '<strong>:first-child</strong> selects all first child elements.',
-      '<strong>p:first-child</strong> selects all first child <strong>&lt;p&gt;</strong> elements.',
-      '<strong>div p:first-child</strong> selects all first child <strong>&lt;p&gt;</strong> elements that are in a <strong>&lt;div&gt;</strong>.'
+     '<strong>:first-child</strong> sélectionne tous les premiers enfants.',
+    '<strong>p:first-child</strong> sélectionne tous les premiers enfants des éléments<strong>&lt;p&gt;</strong>.',
+    '<strong>div p:first-child</strong> sélectionne tous les premiers enfants des éléments <strong>&lt;p&gt;</strong> qui se trouve dans un élément <strong>&lt;div&gt;</strong>.'
     ],
-    board: "[]()(OOO)p"
-  },
-  {
-    selectorName: "Only Child Pseudo-selector",
-    helpTitle: "Select an element that are the only element inside of another one.",
-    doThis : "Select apple and the pickle on the plates",
+
+},
+
+{
+    doThis : "Les premières oranges sur une assiette ?",
+    board: "{SS}(OO)(OO)p",
+    selector : "plate orange:first-child",
+
+    selectorName : "Pseudo-sélecteur du premier enfant",
+    helpTitle : "Sélectionne le premier enfant d'un élément",
+
+
+    syntax : ":first-child",
+    help : "VVous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner cette pseudo-sélecteur avec d'autres sélecteurs.",
+    examples : [
+     '<strong>:first-child</strong> sélectionne tous les premiers enfants.',
+    '<strong>p:first-child</strong> sélectionne tous les premiers enfants des éléments<strong>&lt;p&gt;</strong>.',
+    '<strong>div p:first-child</strong> sélectionne tous les premiers enfants des éléments <strong>&lt;p&gt;</strong> qui se trouve dans un élément <strong>&lt;div&gt;</strong>.'
+    ],
+
+},
+{
+    doThis : "Sélectionne les éléments qui sont seuls sur une assiette",
+    board: "(A)(p)(SS){oO}p",
     selector : "plate :only-child",
-    syntax: ":only-child",
-    help : "You can select any element that is the only element inside of another one.",
+
+    selectorName : "Sélecteur d'enfant unique",
+    helpTitle : "Sélectionne un élément qui est le seul élément à l'intérieur de l'autre. ",
+
+
+    syntax : ":only-child",
+    help : "Vous pouvez sélectionner n'importe quel élément qui est le seul élément à l'intérieur de l'autre.",
     examples : [
-      '<strong>span:only-child</strong> selects the <strong>&lt;span&gt;</strong> elements that are the only child of some other element.',
-      '<strong>ul li:only-child</strong> selects the only <strong>&lt;li&gt;</strong> element that are in a <strong>&lt;ul&gt;</strong>.'
+    '<strong>span:only-child</strong> sélectionne tous les <strong>&lt;span&gt;</strong> qui sont enfants uniques d\'autres éléments.',
+    '<strong>ul li:only-child</strong> sélectionne tous les <strong>&lt;li&gt;</strong> qui sont enfants uniques d\'éléments <strong>&lt;ul&gt;</strong>.'
     ],
-    board: "(A)(p)[]P(oO)p"
-  },
-  {
-    selectorName: "Last Child Pseudo-selector",
-    helpTitle: "Select the last element inside of another element",
-    doThis : "Select the small apple and the pickle",
-    selector : ".small:last-child",
-    syntax: ":last-child",
-    help : "You can use this selector to select an element that is the last child element inside of another element. <br><br>Pro Tip &rarr; In cases where there is only one element, that element counts as the first-child, only-child and last-child!",
+
+},
+
+{
+    doThis : "Sélectionne les cornichons qui sont seuls sur une assiette",
+    board: "(G)(p)(SS)(P)p",
+    selector : "plate pickle:only-child",
+
+    selectorName : "Sélecteur d'enfant unique",
+    helpTitle : "Sélectionne un élément qui est le seul élément à l'intérieur de l'autre. ",
+
+
+    syntax : ":only-child",
+    help : "Vous pouvez sélectionner n'importe quel élément qui est le seul élément à l'intérieur de l'autre.",
     examples : [
-      '<strong>:last-child</strong> selects all last-child elements.',
-      '<strong>span:last-child</strong> selects all last-child <strong>&lt;span&gt;</strong> elements.',
-      '<strong>ul li:last-child</strong> selects the last <strong>&lt;li&gt;</strong> elements inside of any <strong>&lt;ul&gt;</strong>.'
+    '<strong>span:only-child</strong> sélectionne tous les <strong>&lt;span&gt;</strong> qui sont enfants uniques d\'autres éléments.',
+    '<strong>ul li:only-child</strong> sélectionne tous les <strong>&lt;li&gt;</strong> qui sont enfants uniques d\'éléments <strong>&lt;ul&gt;</strong>.'
     ],
-    board: "{a)()(oO)p"
-  },
-  {
-    selectorName: "Nth Child Pseudo-selector",
-    helpTitle: "Select an element by its order in another element",
-    doThis : "Select the 3rd plate",
+
+},
+
+
+
+{
+    doThis : "Sélectionne le dernier objet de chaque assiette ",
+    board: "{g)()(oO)p",
+    selector : "plate :last-child",
+
+    selectorName : "Sélecteur du dernier enfant",
+    helpTitle : "Sélectionne le dernier élément qui se trouvent à l'intérieur d'un autre",
+
+
+    syntax : ":last-child",
+    help : "Vous pouvez utiliser ce sélecteur pour choisir un élément qui est le dernier élément de l'enfant à l'intérieur d'un autre élément. <br/><br/> <strong>Pro Tip</strong>: Dans les cas où il n'existe qu'un seul élément, cet élément compte comme le premier enfant, enfant unique et dernier enfant!",
+    examples : [
+    '<strong>:last-child</strong> sélectionne tous les derniers enfants de chaque éléments.',
+    '<strong>span:last-child</strong> sélectionne tous les derniers enfants de chaque éléments qui sont des <strong>&lt;span&gt;</strong>.',
+    '<strong>ul li:last-child</strong> sélectionne le dernier <strong>&lt;li&gt;</strong> qui se trouve à l\'intérieur d\'éléments <strong>&lt;ul&gt;</strong>.'
+    ],
+
+},
+{
+    doThis : "La dernière petite pomme de chaque assiette ",
+    board: "{a)(A)(Ag)p",
+    selector : "plate apple.small:last-child",
+
+    selectorName : "Sélecteur du dernier enfant",
+    helpTitle : "Sélectionne le dernier élément qui se trouvent à l'intérieur d'un autre",
+
+
+    syntax : ":last-child",
+    help : "Vous pouvez utiliser ce sélecteur pour choisir un élément qui est le dernier élément de l'enfant à l'intérieur d'un autre élément. <br/><br/> <strong>Pro Tip</strong>: Dans les cas où il n'existe qu'un seul élément, cet élément compte comme le premier enfant, enfant unique et dernier enfant!",
+    examples : [
+    '<strong>:last-child</strong> sélectionne tous les derniers enfants de chaque éléments.',
+    '<strong>span:last-child</strong> sélectionne tous les derniers enfants de chaque éléments qui sont des <strong>&lt;span&gt;</strong>.',
+    '<strong>ul li:last-child</strong> sélectionne le dernier <strong>&lt;li&gt;</strong> qui se trouve à l\'intérieur d\'éléments <strong>&lt;ul&gt;</strong>.'
+    ],
+
+},
+
+
+{
+    doThis : "Sélectionne tous les 3ème enfant",
+    board: "()(AGO)(S){}",
     selector : ":nth-child(3)",
-    syntax: ":nth-child(A)",
 
-    help : "Selects the <strong>nth</strong> (Ex: 1st, 3rd, 12th etc.) child element in another element.",
-    examples : [
-      '<strong>:nth-child(8)</strong> selects every element that is the 8th child of another element.',
-      '<strong>div p:nth-child(2)</strong> selects the second <strong>p</strong> in every <strong>div</strong>',
-    ],
-    board: "()()(){}"
-  },
-  {
-    selectorName: "Nth Last Child Selector",
-    helpTitle: "Select an element by its order in another element, counting from the back",
-    doThis : "Select the 1st bento",
-    selector : "bento:nth-last-child(4)",
-    syntax: ":nth-last-child(A)",
-    help : "Selects the children from the bottom of the parent. This is like nth-child, but counting from the back!",
-    examples : [
-      '<strong>:nth-last-child(2)</strong> selects all second-to-last child elements.'
-    ],
-    board: "()[]a(OOO)[]"
-  },
-  {
-    selectorName: "First of Type Selector",
-    helpTitle: "Select the first element of a specific type",
-    doThis : "Select first apple",
-    selector : "apple:first-of-type",
-    syntax: ":first-of-type",
-    help : "Selects the first element of that type within another element.",
-    examples : [
-      '<strong>span:first-of-type</strong> selects the first <strong>&lt;span&gt;</strong> in any element.'
-    ],
-    board: "Aaaa(oO)"
-  },
-  {
-    selectorName: "Nth of Type Selector",
-    // helpTitle: "Nth of Type Selector",
-    doThis: "Select all even plates",
-    selector: "plate:nth-of-type(even)",
-    syntax: ":nth-of-type(A)",
-    help: "Selects a specific element based on its type and order in another element - or even or odd instances of that element.",
-    examples: [
-      '<strong>div:nth-of-type(2)</strong> selects the second instance of a div.',
-      '<strong>.example:nth-of-type(odd)</strong> selects all odd instances of a the example class.'
-    ],
-    board: "()()()(){}()"
-  },
-  {
-    selectorName: "Nth-of-type Selector with Formula",
-    // helpTitle: "Nth-of-type Selector with formula",
-    doThis: "Select every 2nd plate, starting from the 3rd",
-    selector: "plate:nth-of-type(2n+3)",
-    syntax: ":nth-of-type(An+B)",
-    help: "The nth-of-type formula selects every nth element, starting the count at a specific instance of that element.",
-    examples: [
-      '<strong>span:nth-of-type(6n+2)</strong> selects every 6th instance of a <tag>span</tag>, starting from (and including) the second instance.'
-    ],
-    board: "()(p)(a)()(A)()"
-  },
+    selectorName : "Sélecteur du n-ième",
+    helpTitle : "Sélectionne le n-ième enfants",
 
-  {
-    selectorName: "Only of Type Selector",
-    helpTitle: "Select elements that are the only ones of their type",
-    selector : "apple:only-of-type",
-    syntax: ":only-of-type",
-    doThis : "Select the apple on the middle plate.",
-    help : "Selects the only element of its type within another element.",
-    examples : [
-      '<strong>p span:only-of-type</strong> selects a <tag>span</tag> within any <tag>p</tag> if it is the only <tag>span</tag> in there.'
-    ],
-    board: "(aA)(a)(p)"
-  },
 
-  {
-    selectorName: "Last of Type Selector",
-    helpTitle: "Select the last element of a specific type",
-    doThis : "Select the second apple and orange",
-    selector : ".small:last-of-type",
-    syntax: ":last-of-type",
-    help : "Selects each last element of that type within another element. Remember type refers the kind of tag, so <tag>p</tag> and <tag>span</tag> are different types. <br><br> I wonder if this is how the last dinosaur was selected before it went extinct.",
+    syntax : ":nth-child(an+b)",
+    help : "Sélectionne le <strong> nième </strong> (Ex: 1er, 3, 12, etc) élément enfant dans un autre élément.<br/><br/><strong>Pro Tip</strong>: On peut également utiliser ce sélecteur avec la formule (a*n + b). <br/>Description: <strong>a</strong> représente une taille de cycle, <strong>n</strong> est un compteur (commence à 0), et <strong>b</strong> est une valeur de décalage.",
     examples : [
-      '<strong>div:last-of-type</strong> selects the last <strong>&lt;div&gt;</strong> in every element.',
-      '<strong>p span:last-of-type</strong> selects the last <strong>&lt;span&gt;</strong> in every <strong>&lt;p&gt;</strong>.'
+    '<strong>:nth-child(8)</strong> sélectionne tous les éléments qui sont le huitième enfant d\'un autre élément.',
+    '<strong>div p:nth-child(2)</strong> sélectionne le deuxième <strong>p</strong> dans chaque <strong>div</strong>',
+    '<strong>li:nth-child(2n)</strong> sélectionne tous les<strong>li</strong> "pairs"',
+    '<strong>li:nth-child(2n+1)</strong> sélectionne tous les<strong>li</strong> "impairs"',
+    '<strong>li:nth-child(4n)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 (4, 8, 12, etc) ',
+    '<strong>li:nth-child(4n+1)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 depuis le premiers enfant (1, 5, 13, etc) ',
     ],
-    board: "ooPPaa"
-  },
-  {
-    selectorName: "Empty Selector",
-    helpTitle: "Select elements that don't have children",
-    doThis : "Select the empty bentos",
+
+},
+
+
+{
+    doThis : "La 3ème assiette ?",
+    board: "()(OGA)(){}",
+    selector : "plate:nth-child(3)",
+
+    selectorName : "Sélecteur du n-ième",
+    helpTitle : "Sélectionne le n-ième enfants",
+
+
+    syntax : ":nth-child(an+b)",
+    help : "Sélectionne le <strong> nième </strong> (Ex: 1er, 3, 12, etc) élément enfant dans un autre élément.<br/><br/><strong>Pro Tip</strong>: On peut également utiliser ce sélecteur avec la formule (a*n + b). <br/>Description: <strong>a</strong> représente une taille de cycle, <strong>n</strong> est un compteur (commence à 0), et <strong>b</strong> est une valeur de décalage.",
+    examples : [
+    '<strong>:nth-child(8)</strong> sélectionne tous les éléments qui sont le huitième enfant d\'un autre élément.',
+    '<strong>div p:nth-child(2)</strong> sélectionne le deuxième <strong>p</strong> dans chaque <strong>div</strong>',
+    '<strong>li:nth-child(2n)</strong> sélectionne tous les<strong>li</strong> "pairs"',
+    '<strong>li:nth-child(2n+1)</strong> sélectionne tous les<strong>li</strong> "impairs"',
+    '<strong>li:nth-child(4n)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 (4, 8, 12, etc) ',
+    '<strong>li:nth-child(4n+1)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 depuis le premiers enfant (1, 5, 13, etc) ',
+    ],
+
+},
+
+
+{
+    doThis : "Les assiettes paires ?",
+    board: "{}(){}{}{}{}(){}(){}{}()()()()()()()()()(){}",
+    selector : "plate:nth-child(2n)",
+
+    selectorName : "Sélecteur du n-ième",
+    helpTitle : "Sélectionne le n-ième enfants",
+
+
+    syntax : ":nth-child(an+b)",
+    help : "Sélectionne le <strong> nième </strong> (Ex: 1er, 3, 12, etc) élément enfant dans un autre élément.<br/><br/><strong>Pro Tip</strong>: On peut également utiliser ce sélecteur avec la formule (a*n + b). <br/>Description: <strong>a</strong> représente une taille de cycle, <strong>n</strong> est un compteur (commence à 0), et <strong>b</strong> est une valeur de décalage.",
+    examples : [
+    '<strong>:nth-child(8)</strong> sélectionne tous les éléments qui sont le huitième enfant d\'un autre élément.',
+    '<strong>div p:nth-child(2)</strong> sélectionne le deuxième <strong>p</strong> dans chaque <strong>div</strong>',
+    '<strong>li:nth-child(2n)</strong> sélectionne tous les<strong>li</strong> "pairs"',
+    '<strong>li:nth-child(2n+1)</strong> sélectionne tous les<strong>li</strong> "impairs"',
+    '<strong>li:nth-child(4n)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 (4, 8, 12, etc) ',
+    '<strong>li:nth-child(4n+1)</strong> sélectionne tous les<strong>li</strong> qui sont à un indice qui est multiple de 4 depuis le premiers enfant (1, 5, 13, etc) ',
+    ],
+
+},
+
+{
+    doThis : "Sélectionne les bentos vides",
+    board: "[][p][][s]",
     selector : "bento:empty",
-    syntax: ":empty",
-    help : "Selects elements that don't have any other elements inside of them.",
-    examples : [
-      '<strong>div:empty</strong> selects all empty <strong>&lt;div&gt;</strong> elements.'
-    ],
-    board: "[][p][][]"
-  },
-  {
-    selectorName: "Negation Pseudo-class",
-    helpTitle: "Select all elements that don't match the negation selector",
 
-    doThis : "Select the big apples",
-    selector : "apple:not(.small)",
-    syntax: ":not(X)",
-    help : 'You can use this to select all elements that do not match selector <strong>"X"</strong>.',
+    selectorName : "Sélecteur empty",
+    helpTitle : "",
+
+
+    syntax : ":empty",
+    help : "Sélectionne les éléments qui n'ont pas d'enfant",
     examples : [
-      '<strong>:not(#fancy)</strong> selects all elements that do not have <strong>id="fancy"</strong>.',
-      '<strong>div:not(:first-child)</strong> selects every <tag>div</tag> that is not a first child.',
-      '<strong>:not(.big, .medium)</strong> selects all elements that do not have <strong>class="big"</strong> or <strong>class="medium"</strong>.'
+    '<strong>div:empty</strong> sélectionne toutes les <strong>&lt;div&gt;</strong> sans enfant.'
     ],
-    board: "{a}(A)A(o)p"
-  }
+
+},
+
+
+{
+    doThis : "Les éléments qui ne sont pas petits",
+    board: "aAsSpPgG",
+    selector : ":not(.small)",
+
+    selectorName : "pseudo-sélecteur :not()",
+    helpTitle : "",
+
+
+    syntax : ":not(S)",
+    help : "On peut utiliser ce sélecteur pour sélectionner tous les éléments qui ne correspondent pas au sélecteur <strong>S</strong>",
+    examples : [
+     '<strong>:not(#fancy)</strong> sélectionne tous les éléments qui n\'ont pas d\'id égal à <strong>fancy</strong>.',
+    '<strong>div:not(:first-child)</strong> sélectionne toutes les <tag>div</tag> qui ne sont pas les premières filles d\'un élément',
+    '<strong>:not(.big, .medium)</strong> sélectionne tous les éléments qui n\'ont pas la classe égale à <strong>big</strong> ou <strong>medium</strong>.'
+    ],
+
+},
+
+{
+    doThis : "Les éléments qui ne sont pas des pommes ou qui sont petits",
+    board: "aAsSpPgG",
+    selector : ":not(.small, apple)",
+
+    selectorName : "pseudo-sélecteur :not()",
+    helpTitle : "",
+
+
+    syntax : ":not(S)",
+    help : "On peut utiliser ce sélecteur pour sélectionner tous les éléments qui ne correspondent pas au sélecteur <strong>S</strong>",
+    examples : [
+     '<strong>:not(#fancy)</strong> sélectionne tous les éléments qui n\'ont pas d\'id égal à <strong>fancy</strong>.',
+    '<strong>div:not(:first-child)</strong> sélectionne toutes les <tag>div</tag> qui ne sont pas les premières filles d\'un élément',
+    '<strong>:not(.big, .medium)</strong> sélectionne tous les éléments qui n\'ont pas la classe égale à <strong>big</strong> ou <strong>medium</strong>.'
+    ],
+
+},
+
+{
+    doThis : "Les assiettes impaires, les petits sushis et les pommes granny-smith",
+    board: "()()()()()()()()()()gssogSOsaGssAo",
+    selector : "plate:nth-child(2n+1), sushi.small, apple.granny-smith",
+
+    selectorName : "On corse les choses 1",
+    helpTitle : "",
+
+
+    syntax : "???",
+    help : "Plus besoin d'aide si tu es arrivé jusque ici",
+    examples : [
+
+    ],
+
+},
+{
+    doThis : "Les deuxièmes petites oranges a l'intérieur de tout sauf de l'assiette fantaisiste",
+    board: "(oo)o(oo){Oo}[Oo][S]",
+    selector : ":not(#fancy) orange.small:nth-child(2)",
+
+    selectorName : "On corse les choses 2",
+    helpTitle : "",
+
+
+    syntax : "???",
+    help : "Plus besoin d'aide si tu es arrivé jusque ici",
+    examples : [
+
+    ],
+},
+
+{
+    doThis : "Les assiettes qui contiennent une pomme qui n'est ni petite ni une granny-smith",
+    board: "(g)a(A){Gg}[a](A)",
+    selector : "plate apple:not(.small, .granny-smith)",
+
+    selectorName : "On corse les choses 3",
+    helpTitle : "",
+
+
+    syntax : "???",
+    help : "Plus besoin d'aide si tu es arrivé jusque ici",
+    examples : [
+
+    ],
+},
+
+
+{
+    doThis : "Les pommes qui sont soit petites soit granny-smith mais pas les deux",
+    board: "(g)a(A){Gg}[a](A)",
+    selector : "apple.small:not(.granny-smith), plate apple.granny-smith:not(.small)",
+
+    selectorName : "On corse les choses 4",
+    helpTitle : "",
+
+
+    syntax : "???",
+    help : "Plus besoin d'aide si tu es arrivé jusque ici",
+    examples : [
+
+    ],
+},
 ];
