@@ -14,7 +14,7 @@ $(document).ready(function(){
     $(".note").slideToggle();
   });
   if (currentLevel == 0) {
-    $(".note-toggle").hide();
+    $(".note-toggle:first-child").show();
     $(".note").slideToggle();
   }
 
@@ -249,20 +249,37 @@ function fireRule(rule) {
   // var ruleSelected = $(".table-wrapper " + rule).not(baseTable);
   // var levelSelected = $(".table-wrapper " + level.selector).not(baseTable);
 
-  var ruleSelected = $(".table-wrapper").find(rule).not(baseTable);
-  var levelSelected = $(".table-wrapper").find(level.selector).not(baseTable);
+  var levelSelected,
+      win = false,
+      ruleSelected = $(".table-wrapper").find(rule).not(baseTable);
+  if (level.selector instanceof Array) {
+    var i = 0;
+    do {
+      var currentSelector = level.selector[i];
+      levelSelected = $(".table-wrapper").find(currentSelector).not(baseTable);
+      if(ruleSelected.length == levelSelected.length && ruleSelected.length > 0) {
+        win = checkResults(ruleSelected,levelSelected,rule);
+      }
+    } while(win == false && i++ < level.selector.length);
+  } else {
+    levelSelected = $(".table-wrapper").find(level.selector).not(baseTable);
+
+    if(ruleSelected.length == levelSelected.length && ruleSelected.length > 0){
+      win = checkResults(ruleSelected,levelSelected,rule);
+    }
+  }
 
 
-  var win = false;
+
+
+
 
   //If nothing is selected
   if(ruleSelected.length == 0) {
     $(".editor").addClass("shake");
   }
 
-  if(ruleSelected.length == levelSelected.length && ruleSelected.length > 0){
-    win = checkResults(ruleSelected,levelSelected,rule);
-  }
+
 
   if(win){
     ruleSelected.removeClass("strobe");
@@ -343,6 +360,10 @@ function loadBoard(){
       boardMarkup = boardMarkup + '<apple class="small granny-smith"/>\n'
       markup = markup + '<div>&ltapple class="small granny-smith"/&gt</div>';
     }
+    if (c == "g") {
+      boardMarkup = boardMarkup + '<apple class="granny-smith small"/>\n'
+      markup = markup + '<div>&ltapple class="granny-smith small"/&gt</div>';
+    }
     if(c == "C") {
       boardMarkup = boardMarkup + '<carrot/>\n'
       markup = markup + "<div>&ltcarrot/&gt</div>";
@@ -405,7 +426,7 @@ function loadLevel(){
   if(currentLevel > 0 && currentLevel < 4) {
     $(".note-toggle").show();
   } else {
-    $(".note-toggle").hide();
+    $(".note-toggle").last().hide();
   }
 
   $(".level-menu .current").removeClass("current");

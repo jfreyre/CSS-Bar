@@ -29,6 +29,7 @@ var levels = [
 //     syntax : "E",
 //     examples : [],
 // },
+
 {
     doThis : "Toutes les assiettes ?",
     board: "s () a {} O [] P () G",
@@ -76,7 +77,7 @@ var levels = [
 
 
 {
-    doThis : "L'assiette fantaisiste ?",
+    doThis : "L'élément fantaisiste ?",
     board: "{}()[]",
     selector : "#fancy",
 
@@ -165,7 +166,10 @@ examples : [
 {
     doThis : "Toute les petites pommes granny-smith ?",
     board: "aAoOpPsSgG",
-    selector : "apple.small.granny-smith",
+    selector : [
+        "apple.small.granny-smith",
+        "apple.granny-smith.small"
+    ],
 
     selectorName : "Combiner des sélecteurs de classe",
     helpTitle : "Sélectionne les éléments d'un type en fonction de plusieurs classes",
@@ -199,7 +203,14 @@ examples : [
 {
     doThis : "Toutes les assiettes, tous les bento et tous les petits objets ?",
     board: "{}S[]()G[]ga",
-    selector : "plate, bento, .small",
+    selector : [
+        "plate, bento, .small",
+        "plate, .small, bento",
+        "bento, .small, plate",
+        "bento, plate, .small",
+        ".small, bento, plate",
+        ".small, plate, bento",
+    ],
 
     selectorName : "Combinateur",
     helpTitle : "Permet de combiner plusieurs sélecteurs simplement avec une <strong>,</strong>",
@@ -336,7 +347,10 @@ examples : [
 {
     doThis : "Elements qui ont un attribut id égal à 'fancy' ?",
     board: "g{}()H",
-    selector : " [id='fancy']",
+    selector : [
+        "[id='fancy']",
+        '[id="fancy"]'
+    ],
 
     selectorName : "Sélecteur d'attribut",
     helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
@@ -353,7 +367,10 @@ examples : [
 {
     doThis : "Elements qui ont un attribut class dont l'une des valeurs vaut 'granny-smith' ?",
     board: "g{}()H",
-    selector : " [class~='granny-smith']",
+    selector : [
+        "[class~='granny-smith']",
+        '[class~="granny-smith"]',
+    ],
 
     selectorName : "Sélecteur d'attribut",
     helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
@@ -370,7 +387,10 @@ examples : [
 {
     doThis : "Elements qui ont un attribut class qui commence par 'gran' ?",
     board: "g{}()H",
-    selector : " [class^='gran']",
+    selector : [
+        "[class^='gran']",
+        '[class^="gran"]'
+    ],
 
     selectorName : "Sélecteur d'attribut",
     helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
@@ -387,7 +407,10 @@ examples : [
 {
     doThis : "Elements qui ont un attribut class qui se termine par 'th' ?",
     board: "g{}()H",
-    selector : " [class$='th']",
+    selector : [
+        "[class$='th']",
+        '[class$="th"]'
+    ],
 
     selectorName : "Sélecteur d'attribut",
     helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
@@ -405,8 +428,10 @@ examples : [
 {
     doThis : "Elements qui ont un attribut class contient 'y-s' ?",
     board: "g{}()H",
-    selector : " [class*='y-s']",
-
+    selector : [
+        "[class*='y-s']",
+        '[class*="y-s"]'
+    ],
     selectorName : "Sélecteur d'attribut",
     helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
 
@@ -564,7 +589,10 @@ examples : [
 {
     doThis : "Les assiettes \"paires\" ?",
     board: "{}(){}{}{}{}(){}(){}{}()()()()()()()()()(){}",
-    selector : "plate:nth-child(2n)",
+    selector : [
+        "plate:nth-child(2n)",
+        "plate:nth-child(even)"
+    ],
 
     selectorName : "Sélecteur du n-ième",
     helpTitle : "Sélectionne le n-ième enfants",
@@ -623,7 +651,10 @@ examples : [
 {
     doThis : "Les éléments qui sont ni des pommes, ni petits ?",
     board: "aAsSpPgG",
-    selector : ":not(.small, apple)",
+    selector : [
+        ":not(.small, apple)",
+        ":not(apple, .small)"
+    ],
 
     selectorName : "pseudo-sélecteur :not()",
     helpTitle : "",
@@ -642,7 +673,14 @@ examples : [
 {
     doThis : "Les assiettes impaires, les petits sushis et les pommes granny-smith",
     board: "()()()()()()()()()()gssogSOsaGssAo",
-    selector : "plate:nth-child(2n+1), sushi.small, apple.granny-smith",
+    selector : [
+        "plate:nth-child(2n+1), sushi.small, apple.granny-smith",
+        "plate:nth-child(2n+1), apple.granny-smith, sushi.small",
+        "sushi.small, apple.granny-smith, plate:nth-child(2n+1)",
+        "sushi.small, plate:nth-child(2n+1), apple.granny-smith",
+        "apple.granny-smith, plate:nth-child(2n+1), sushi.small",
+        "apple.granny-smith, sushi.small, plate:nth-child(2n+1)",
+    ],
 
     selectorName : "On corse les choses 1",
     helpTitle : "",
@@ -674,7 +712,10 @@ examples : [
 {
     doThis : "Les assiettes qui contiennent une pomme qui n'est ni petite ni une granny-smith",
     board: "(g)a(A){Gg}[a](A)",
-    selector : "plate apple:not(.small, .granny-smith)",
+    selector : [
+        "plate apple:not(.small, .granny-smith)",
+        "plate apple:not(.granny-smith, .small)"
+    ],
 
     selectorName : "On corse les choses 3",
     helpTitle : "",
@@ -691,7 +732,10 @@ examples : [
 {
     doThis : "Les pommes qui sont soit petites soit granny-smith mais pas les deux",
     board: "(g)a(A){Gg}[a](A)",
-    selector : "apple.small:not(.granny-smith), plate apple.granny-smith:not(.small)",
+    selector : [
+         "apple.small:not(.granny-smith), apple.granny-smith:not(.small)",
+         "apple.granny-smith:not(.small), apple.small:not(.granny-smith)"
+    ],
 
     selectorName : "On corse les choses 4",
     helpTitle : "",
