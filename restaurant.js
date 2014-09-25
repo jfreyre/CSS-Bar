@@ -13,6 +13,10 @@ $(document).ready(function(){
     $(this).hide();
     $(".note").slideToggle();
   });
+  if (currentLevel == 0) {
+    $(".note-toggle").hide();
+    $(".note").slideToggle();
+  }
 
   $(".level-menu-toggle-wrapper").on("click",function(){
     $(".level-menu").toggleClass("open");
@@ -88,7 +92,7 @@ function buildLevelmenu(){
   for(var i = 0; i < levels.length; i++){
     var level = levels[i];
     var item = document.createElement("a");
-    $(item).html(level.syntax);
+    $(item).html((i+1) + '. ' + level.selectorName);
     $(".level-menu .levels").append(item);
     $(item).on("click",function(){
       currentLevel = $(this).index();
@@ -294,7 +298,7 @@ function fireRule(rule) {
 }
 
 function winGame(){
-  $(".table").html('<span class="winner"><strong>You did it!</strong><br>You are a CSS God.</span>');
+  $(".table").html('<span class="winner"><strong>Waouw!!!!</strong><br/>Tu es sur la bonne voie!</span>');
   resetTable();
 }
 
@@ -398,7 +402,7 @@ function loadLevel(){
   level = levels[currentLevel];
 
   // Show the help link only for the first three levels
-  if(currentLevel < 3) {
+  if(currentLevel > 0 && currentLevel < 4) {
     $(".note-toggle").show();
   } else {
     $(".note-toggle").hide();
