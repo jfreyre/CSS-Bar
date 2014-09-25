@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS Diner - Where we feast on CSS Selectors!</title>
+    <title>CSS Bar!</title>
     <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="levels.js" type="text/javascript" charset="utf-8"></script>
     <script src="restaurant.js" type="text/javascript" charset="utf-8"></script>
@@ -12,7 +12,7 @@
   <body>
 
     <header>
-      CSS Diner
+      CSS Bar
       <div class="logo">
         <plate><apple /></plate>
       </div>
@@ -25,32 +25,29 @@
         <h2 class="order"></h2>
 
         <div class="note">
-          <h3>No worries, you've got this!</h3>
+          <h3>Bienvenue!</h3>
           <p>
-            You're about to learn CSS Selectors!
-            Selectors are how you pick which element to apply styles to.
+            CSS Bar est un tutoriel pour apprendre les sélecteurs CSS!
           </p>
-
-          <h4>Exhibit 1 - A CSS Rule</h4>
-
+          <p>
+           Pour avancer dans le jeu, il suffit d'écrire le bon sélecteur CSS dans la zone "Editeur CSS" ci-dessous
+          </p>
+          <h4>Démo 1 - Règle CSS basique</h4>
 <pre>
 p {
-   margin-bottom: 12px;
+   color: red;
 }
 </pre>
 
 
-          <p>Here, the "p" is the selector (selects all &lt;p&gt; elements) and applies the margin-bottom style.</p>
-          <p>
-            To play, type in a CSS selector in the editor below to select the correct items on the table.
-            If you get it right, you'll advance to the next level.
-          </p>
-          <p>Hover over the items on the table to see their HTML markup.</p>
-          <p>Get help with selectors on the right! &rarr;</p>
-          <a class="note-toggle" href="#">Ok, got it!</a>
+          <p>Dans cet exemple, le sélecteur "p" (sélectionne tous les éléments &lt;p&gt;) et leur applique une couleur rouge.</p>
+
+          <p>Une aide est présente à droite de l'écran pour chaque sélecteur.</p>
+          <p>En passant le curseur sur les éléments, tu verras leur structure HTML.</p>
+          <a class="note-toggle" href="#">Ok!</a>
         </div>
 
-        <a class="note-toggle" href="#">Help, I'm stuck!</a>
+        <a class="note-toggle" href="#">Au Secours!</a>
 
         <div class="game-wrapper">
           <div class="table-wrapper">
@@ -68,32 +65,32 @@ p {
 
           <div class="editor-pane">
             <div class="input-header">
-              <div class="file-name">style.css</div> CSS Editor
+              <div class="file-name">style.css</div> Editeur CSS
             </div>
 
           <div class="file-window css-view">
             <div class="line-numbers">
               1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20
             </div>
-              <input class="input-strobe" type="text" placeholder="Type in a CSS selector"/><span class="plus">+</span><div class="enter-button">enter</div>
+              <input class="input-strobe" type="text" placeholder="Entrer un sélecteur CSS"/><span class="plus">+</span><div class="enter-button">Enter</div>
             <div>
             {<br/>
-            /* Styles would go here. */<br/>
+            /* les styles viendraient ici. */<br/>
             }
             </div>
-            <div class="help">
+           <!--  <div class="help">
               <br/>
               /* <br/>
               Type a number to skip to a level.<br/>
               Ex &rarr; "5" for level 5 <br/>*/
-            </div>
+            </div> -->
           </div>
         </div>
 
         <div class="editor-pane html-view">
           <div class="input-header">
-            <div class="file-name">table.html</div>
-            HTML Viewer
+            <div class="file-name">diner.html</div>
+            Code HTML
           </div>
           <div class="file-window">
             <div class="line-numbers">
@@ -106,17 +103,12 @@ p {
       </div>
 
       <div class="what-is-this">
-        <h2>What is this?</h2>
-        <p>It's a little game to help you learn CSS selectors. Type in the correct selector to complete each level. Get help on the right.</p>
-        <p>It's a work in progress, so please give me feedback!</p>
+        <h2>Qu'est-ce que c'est ?</h2>
         <p>
-          Made by <a href="http://www.twitter.com/flukeout">@flukeout</a> with special thanks to...
+          A la base, ce jeu a été créé par <a href="http://www.twitter.com/flukeout">@flukeout</a>
         </p>
         <p>
-          <a href="https://twitter.com/k88hudson">@k88hudson</a>, <a href="http://www.twitter.com/antlam7">@antlam7</a> and <a href="https://twitter.com/smashman2004">@smashman2004</a>.
-        </p>
-        <p>
-          Please submit issues and PRs at <a href="https://github.com/flukeout/restaurant">this Github repo</a>.
+          Une soucis ? Pas de soucis, il suffit de le soumettre sur <a href="https://github.com/jfreyre/restaurant">ce compte Github</a>.
         </p>
 
 
