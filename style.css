@@ -431,6 +431,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef9f2f', end
   border: solid 2px #FDF1B8;
   border-width: 7px 2px 9px 2px;
   margin: 20px 10px;
+  z-index: 100;
 }
 
 
