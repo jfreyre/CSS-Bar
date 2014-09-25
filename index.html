@@ -1,85 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CSS Bar!</title>
-    <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="levels.js" type="text/javascript" charset="utf-8"></script>
-    <script src="restaurant.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link href='http://fonts.googleapis.com/css?family=Exo+2:200,400,600,400italic,600italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-  </head>
-  <body>
+<head>
+  <title>CSS Bar!</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href='http://fonts.googleapis.com/css?family=Exo+2:200,400,600,400italic,600italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
 
-    <header>
-      CSS Bar
-      <div class="logo">
-        <plate><apple /></plate>
+  <header>
+    CSS Bar
+    <div class="logo">
+      <plate><apple /></plate>
+    </div>
+  </header>
+
+  <div class="col-wrapper bottom-half">
+
+    <div class="left-col">
+
+
+
+      <div class="note">
+        <h3>Bienvenue!</h3>
+        <p>
+          CSS Bar est un tutoriel pour apprendre les sélecteurs CSS!
+        </p>
+        <h4>Un sélecteur ?</h4>
+        <p>En CSS, un sélecteur est instruction qui va indiquer au navigateur de "sélectionner" certains éléments afin de leur appliquer des styles.</p>
+        <h4>Démo 1 - Règle CSS basique</h4>
+        <pre>
+          p {
+          color: red;
+        }
+      </pre>
+
+
+      <p>Dans cet exemple, le sélecteur "p" (sélectionne tous les éléments &lt;p&gt;) et leur applique une couleur rouge.</p>
+      <h4>Comment jouer ?</h4>
+      <p>
+       Pour avancer dans le jeu, il suffit d'écrire le bon sélecteur CSS dans la zone "Editeur CSS" ci-dessous
+     </p>
+     <p>Une aide est présente à droite de l'écran pour chaque exercice.</p>
+     <p>Pour finir, en passant le curseur sur les éléments, tu verras leur structure HTML.</p>
+     <a class="note-toggle" href="#">Ok!</a>
+   </div>
+
+   <a class="note-toggle" href="#">Au Secours!</a>
+
+   <div class="game-wrapper">
+    <div class="table-wrapper">
+      <div class="table"></div>
+    </div>
+    <div class="table-edge">
+      <div class="table-leg"></div>
+      <div class="table-leg"></div>
+    </div>
+  </div>
+
+  <h2 class="order">Comment trouver : ...</h2>
+
+  <div class="editor">
+
+    <div class="editor-pane">
+      <div class="input-header">
+        <div class="file-name">style.css</div> Editeur CSS
       </div>
-    </header>
 
-    <div class="col-wrapper bottom-half">
-
-      <div class="left-col">
-
-
-
-        <div class="note">
-          <h3>Bienvenue!</h3>
-          <p>
-            CSS Bar est un tutoriel pour apprendre les sélecteurs CSS!
-          </p>
-          <h4>Un sélecteur ?</h4>
-          <p>En CSS, un sélecteur est instruction qui va indiquer au navigateur de "sélectionner" certains éléments afin de leur appliquer des styles.</p>
-          <h4>Démo 1 - Règle CSS basique</h4>
-<pre>
-p {
-   color: red;
-}
-</pre>
-
-
-          <p>Dans cet exemple, le sélecteur "p" (sélectionne tous les éléments &lt;p&gt;) et leur applique une couleur rouge.</p>
-          <h4>Comment jouer ?</h4>
-            <p>
-           Pour avancer dans le jeu, il suffit d'écrire le bon sélecteur CSS dans la zone "Editeur CSS" ci-dessous
-          </p>
-          <p>Une aide est présente à droite de l'écran pour chaque exercice.</p>
-          <p>Pour finir, en passant le curseur sur les éléments, tu verras leur structure HTML.</p>
-          <a class="note-toggle" href="#">Ok!</a>
+      <div class="file-window css-view">
+        <div class="line-numbers">
+          1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20
         </div>
-
-        <a class="note-toggle" href="#">Au Secours!</a>
-
-        <div class="game-wrapper">
-          <div class="table-wrapper">
-            <div class="table"></div>
-          </div>
-          <div class="table-edge">
-            <div class="table-leg"></div>
-            <div class="table-leg"></div>
-          </div>
-        </div>
-
-    <h2 class="order"></h2>
-
-        <div class="editor">
-
-          <div class="editor-pane">
-            <div class="input-header">
-              <div class="file-name">style.css</div> Editeur CSS
-            </div>
-
-          <div class="file-window css-view">
-            <div class="line-numbers">
-              1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20
-            </div>
-              <input class="input-strobe" type="text" placeholder="Entrer un sélecteur CSS"/><span class="plus">+</span><div class="enter-button">Enter</div>
-            <div>
-            {<br/>
-            /* les styles viendraient ici. */<br/>
-            }
-            </div>
+        <input class="input-strobe" type="text" placeholder="Entrer un sélecteur CSS"/><span class="plus">+</span><div class="enter-button">Enter</div>
+        <div>
+          {<br/>
+          /* les styles viendraient ici. */<br/>
+        }
+      </div>
            <!--  <div class="help">
               <br/>
               /* <br/>
@@ -97,24 +94,24 @@ p {
           <div class="file-window">
             <div class="line-numbers">
               1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21              </div>
-            <div class="markup">
+              <div class="markup">
+              </div>
             </div>
           </div>
+
         </div>
 
-      </div>
-
-      <div class="what-is-this">
-        <h2>Qu'est-ce que c'est ?</h2>
-        <p>
-          A la base, ce jeu a été créé par <a href="http://www.twitter.com/flukeout">@flukeout</a> et est gracieusement distibué sous licence <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License</a>.
-        </p>
-        <p>
-          Une soucis, Une faute, Un comportement étrange ? Pas de soucis, il suffit de le soumettre sur <a href="https://github.com/jfreyre/restaurant">ce compte Github</a>.
-        </p>
+        <div class="what-is-this">
+          <h2>Qu'est-ce que c'est ?</h2>
+          <p>
+            A la base, ce jeu a été créé par <a href="http://www.twitter.com/flukeout">@flukeout</a> et est gracieusement distibué sous licence <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License</a>.
+          </p>
+          <p>
+            Une soucis, une faute, un comportement étrange ? Pas de soucis, il suffit de le soumettre sur <a href="https://github.com/jfreyre/restaurant">ce compte Github</a>.
+          </p>
 
 
-      </div>
+        </div>
 
       </div><!-- /left col -->
 
@@ -125,13 +122,13 @@ p {
             <a href="#">&lt;</a>
             <a href="#">&gt;</a>
           </div>
-          <h1 class="level-header"></h1>
+          <h1 class="level-header">Niveau</h1>
           <div class="level-progress"><div class="progress"></div></div>
           <div class="display-help">
 
-            <h3 class="selector-name"></h3>
-            <h2 class="title"></h2>
-            <h3 class="syntax"></h3>
+            <h3 class="selector-name">Sélecteur</h3>
+            <h2 class="title">Sous-titre</h2>
+            <h3 class="syntax">Syntax</h3>
 
             <div class="hint"></div>
             <div class="examples"></div>
@@ -148,10 +145,14 @@ p {
         </div>
 
       </div><!-- /right col -->
-  </div>
+    </div>
 
-  <!-- This is the popup that floats over table elemetns -->
-  <div class="helper"></div>
+    <!-- This is the popup that floats over table elemetns -->
+    <div class="helper"></div>
+
+    <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="levels.js" type="text/javascript" charset="utf-8"></script>
+    <script src="restaurant.js" type="text/javascript" charset="utf-8"></script>
 
   </body>
-</html>
+  </html>

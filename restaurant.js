@@ -15,7 +15,7 @@ $(document).ready(function(){
   });
   if (currentLevel == 0) {
     $(".note-toggle:first-child").show();
-    $(".note").slideToggle();
+    $(".note").fadeIn();
   }
 
   $(".level-menu-toggle-wrapper").on("click",function(){
@@ -151,6 +151,7 @@ function showTooltip(el){
 
 //Animate the enter button
 function enterHit(){
+  $('.note').fadeOut();
   $(".enter-button").removeClass("enterhit");
   $(".enter-button").width($(".enter-button").width());
   $(".enter-button").addClass("enterhit");
@@ -441,7 +442,7 @@ function loadLevel(){
   resetTable();
 
   $(".level-header").html("Level " + (currentLevel+1) + " of " + levels.length);
-  $(".order").text(level.doThis);
+  $(".order").text("Comment trouver: " + level.doThis);
   $("input").val("").focus();
 
 
