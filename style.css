@@ -472,7 +472,42 @@ bento > orange:last-child
 {
   top: calc(50% - 35px);
 }
+bento apple,
+bento orange {
+  position: absolute;
+}
 
+bento apple:last-child,
+bento orange:last-child {
+  z-index: 300;
+  top: 5px;
+}
+
+bento apple:nth-last-child(2),
+bento orange:nth-last-child(2) {
+  top: -15px;
+  left: calc(25% - 15px);
+  z-index: 400;
+}
+
+bento apple:nth-last-child(3),
+bento orange:nth-last-child(3)
+{
+  top: -15px;
+  left: calc(75% - 15px);
+  z-index: 500;
+}
+
+bento apple:nth-last-child(4),
+bento orange:nth-last-child(4)
+{
+  top: -35px;
+  z-index: 600;
+}
+
+plate sushi.small {
+  left: calc(15% - 15px);
+}
 plate .small,
 bento .small {
   left: calc(50% - 15px);
@@ -761,25 +796,28 @@ plate orange {
 plate apple:last-child,
 plate orange:last-child {
   z-index: 300;
+  top: 25px;
 }
 
 plate apple:nth-last-child(2),
 plate orange:nth-last-child(2) {
-  top: -25px;
+  top: -5px;
+  left: calc(25% - 15px);
   z-index: 400;
 }
 
 plate apple:nth-last-child(3),
 plate orange:nth-last-child(3)
 {
-  top: -65px;
+  top: -5px;
+  left: calc(75% - 15px);
   z-index: 500;
 }
 
 plate apple:nth-last-child(4),
 plate orange:nth-last-child(4)
 {
-  top: -105px;
+  top: -25px;
   z-index: 600;
 }
 
