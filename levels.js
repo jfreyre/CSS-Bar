@@ -317,7 +317,7 @@ examples : [
 
 
     syntax : ":first-child",
-    help : "VVous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner ce pseudo-sélecteur avec d'autres sélecteurs.",
+    help : "Vous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner ce pseudo-sélecteur avec d'autres sélecteurs.",
     examples : [
      '<strong>:first-child</strong> sélectionne tous les premiers enfants.',
     '<strong>p:first-child</strong> sélectionne tous les premiers enfants qui sont de type <strong>&lt;p&gt;</strong>.',
@@ -333,7 +333,7 @@ examples : [
     selector : "[id]",
 
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att]",
@@ -353,7 +353,7 @@ examples : [
     ],
 
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att=val]",
@@ -373,7 +373,7 @@ examples : [
     ],
 
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att~=val]",
@@ -393,7 +393,7 @@ examples : [
     ],
 
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att^=val]",
@@ -413,7 +413,7 @@ examples : [
     ],
 
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att$=val]",
@@ -433,7 +433,7 @@ examples : [
         '[class*="y-s"]'
     ],
     selectorName : "Sélecteur d'attribut",
-    helpTitle : "Utilisable sous plusieurs forme, il devient très intéressant.",
+    helpTitle : "Existant sous plusieurs formes, il devient très intéressant à utiliser.",
 
 
     syntax : "[att*=val]",
@@ -456,7 +456,7 @@ examples : [
 
 
     syntax : ":first-child",
-    help : "VVous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner ce pseudo-sélecteur avec d'autres sélecteurs.",
+    help : "Vous pouvez sélectionner le premier élément enfant. Un élément enfant est un élément qui est directement imbriqué dans un autre élément. Vous pouvez combiner ce pseudo-sélecteur avec d'autres sélecteurs.",
     examples : [
      '<strong>:first-child</strong> sélectionne tous les premiers enfants.',
     '<strong>p:first-child</strong> sélectionne tous les premiers enfants qui sont de type <strong>&lt;p&gt;</strong>.',

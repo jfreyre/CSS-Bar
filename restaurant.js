@@ -250,14 +250,18 @@ function fireRule(rule) {
   // var ruleSelected = $(".table-wrapper " + rule).not(baseTable);
   // var levelSelected = $(".table-wrapper " + level.selector).not(baseTable);
 
+  var ruleTable = $(".table").clone();
+  ruleTable.find(".strobe").removeClass("strobe");
+
   var levelSelected,
       win = false,
-      ruleSelected = $(".table-wrapper").find(rule).not(baseTable);
+      ruleSelected = ruleTable.find(rule).not(baseTable);
   if (level.selector instanceof Array) {
     var i = 0;
     do {
       var currentSelector = level.selector[i];
-      levelSelected = $(".table-wrapper").find(currentSelector).not(baseTable);
+
+      levelSelected = ruleTable.find(currentSelector).not(baseTable);
       if(ruleSelected.length == levelSelected.length && ruleSelected.length > 0) {
         win = checkResults(ruleSelected,levelSelected,rule);
       }
@@ -305,9 +309,9 @@ function fireRule(rule) {
     ruleSelected.addClass("shake");
 
     setTimeout(function(){
-      $(".shake").removeClass("shake");
-      $(".strobe").removeClass("strobe");
-      levelSelected.addClass("strobe");
+      $(".shake, .strobe").removeClass("shake").removeClass("strobe");
+      var selector = level.selector instanceof Array ? level.selector[1] : level.selector;
+      $(".table ").find(selector).addClass("strobe");
     },500);
 
     $(".result").fadeOut();
@@ -450,6 +454,7 @@ function loadLevel(){
   $(".result").text("");
 
   //Strobe what's supposed to be selected
-  $(".table " + level.selector).addClass("strobe");
+  var selector = level.selector instanceof Array ? level.selector[1] : level.selector;
+  $(".table ").find(selector).addClass("strobe");
 
 }
